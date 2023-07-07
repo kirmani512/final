@@ -104,4 +104,49 @@ class ProductController extends Controller
         $product->save();
         return redirect("web/product");
     }
+    public function show($id){
+        $obj=null;
+        if(!empty($id)){
+            $obj=Product::find($id);
+        }
+        return view("web.product.preview")
+        ->with("title","Delete Product")
+        ->with("id",$id)
+        ->with("obj",$obj);
+    }
+    public function edit($id){
+        $obj = null;
+        if (!empty($id)) {
+            $obj = product::find($id);
+        }
+        return view("web.product.add_edit")
+            ->with("title", "Edit Product")
+            ->with("id", $id)
+            ->with("obj", $obj);
+    }
+    public function update(Request $request, $id)
+    {
+        //
+        $request->validate([
+            "name=>required|min:8",
+            "price=>required|integer",
+            "qty=>required|integer",
+            "description=>required|min:10"
+        ]);
+        $obj = Product::find($id);
+        $obj->title = $request->title ?? $obj->title;
+        $obj->price = $request->price ?? $obj->price;
+        $obj->description = $request->description ?? $obj->description;
+        $obj->save();
+        return redirect("web/product");
+    }
+    public function destroy($id)
+    {
+        //
+        if (!empty($id)) {
+            $obj = Product::find($id);
+            $obj->delete();
+            return redirect("web/product");
+        }
+    }
 }
