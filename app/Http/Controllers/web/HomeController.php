@@ -30,7 +30,7 @@ class HomeController extends Controller
     }
     function shop()
     {
-        return view("web.shop");
+        return view("web.shop")->with("list", Product::all())->with("catlist", Category::all());
     }
     // function checkout()
     // {

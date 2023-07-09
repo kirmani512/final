@@ -84,6 +84,15 @@ Add product
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Price<span>*</span></p>
+                                    <input value="{{!empty($id) ? $obj->price:old("price")}}" name="price" type="text">
+                                    @error("price")
+                                    <p class="alert alert-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="checkout__input">
                                 <p>Description<span>*</span></p>
                                 <input value="{{!empty($id) ? $obj->description: old("value")}}" name="description" type="text">
@@ -110,7 +119,7 @@ Add product
                                 </div>
 
                             </div>
-                            <br
+                            <br>
                         </div>
                         <br>
                         <div class="col-lg-12 col-md-12">

@@ -71,13 +71,13 @@ Shopping cart
                         </thead>
                         <tbody>
                             @foreach($list as $row)
-                            <th scope="row" {{$row->view_id}}/th>
+                            <th scope="row" {{$row->cart_id}}>/th>
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img width="100px" height="100px" src="{{ Asset($row->display_image) }}" alt="">
+                                        <img width="100px" height="100px" src="{{ Asset($row->featured_image) }}" alt="">
                                     </td>
                                     <td class="shoping__cart__name">
-                                        <h5>{{ $row->name }}</h5>
+                                        <h5>{{ $row->title }}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
                                         <h5>Rs&nbsp;{{ $row->price }}</h5>
@@ -93,7 +93,7 @@ Shopping cart
                                         <h5>Rs&nbsp;{{ $row->price}}</h5>
                                     </td>
                                     <td>
-                                        <a href="{{ URL('web/remove_cart',$row->view_id) }}"><i class="fa fa-remove"></i></a>
+                                        <a href="{{ URL('web/remove_cart',$row->cart_id) }}"><i class="fa fa-remove"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

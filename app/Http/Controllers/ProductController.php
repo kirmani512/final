@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Repository\Interfaces\IProductRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -99,6 +101,7 @@ class ProductController extends Controller
             $product->featured_image = $path;
         }
         $product->title = $request->title;
+        $product->price=$request->price;
         $product->description = $request->description;
         $product->category_id = $request->category_id;
         $product->save();
@@ -134,6 +137,7 @@ class ProductController extends Controller
         ]);
         $obj = Product::find($id);
         $obj->title = $request->title ?? $obj->title;
+        $obj->price = $request->price ?? $obj->price;
         $obj->description = $request->description ?? $obj->description;
         $obj->save();
         return redirect("web/product");
@@ -146,5 +150,56 @@ class ProductController extends Controller
             $obj->delete();
             return redirect("web/product");
         }
+    }
+    // function shop_cart()
+    // {
+    //     //$list = Product::all();
+
+    //     $list = DB::table("cart as c")
+    //         ->join("product as p", "c.product_id", "=", "p.id")
+    //         ->where("c.user_id", session("user_id"))
+    //         ->select("p.*", "p_cart.id as view_id")
+    //         ->get();
+
+    //     $total = 0;
+
+    //     foreach ($list as $product) {
+    //         $total += $product->price;
+    //     }
+
+    //     return view("web.shop_cart")->with("list", $list)->with("total", $total);
+    // }
+    function shop_cart(){
+        $list=DB::table("carts as cart")
+        ->join("products as product","cart.product_id","=","product.id")
+        ->where("cart.user_id", session("user_id"))
+        ->select("product.*","cart.id as cart_id")
+        ->get();
+
+        $total=0;
+
+        foreach($list as $product){
+            $total+=$product->price;
+        }
+        return view("web.shop_cart")->with("list",$list)->with("total",$total);
+    }
+    function add_cart($id)
+    {
+        $p = new Cart();
+
+        $p->product_id = $id;
+        $p->user_id = session("user_id");
+
+        $p->save();
+
+
+        return redirect("web/shop_cart");
+    }
+    function remove_cart($id)
+    {
+        $p = Cart::find($id);
+        $p->delete();
+
+        return redirect("web/shop_cart");
     }
 }

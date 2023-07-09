@@ -68,7 +68,7 @@ Shop
         @foreach($list as $row)
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="product__item">
-                <div class="product__item__pic set-bg" data-setbg="{{ Asset($row->display_image) }}">
+                <div class="product__item__pic set-bg" data-setbg="{{ Asset($row->featured_image) }}">
                     <ul class="product__item__pic__hover">
                         @if(!empty(session("email")))
                         <li><a href="{{ URL('web/fav',$row->id) }}"><i class="fa fa-heart"></i></a></li>
