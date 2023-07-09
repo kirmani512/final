@@ -109,7 +109,7 @@ CheckOut
                         </thead>
                         <tbody>
                             @foreach($list as $row)
-                            <th scope="row" {{$row->view_id}}/th>
+                            <th scope="row" {{$row->view_id}}>
                                 <tr>
                                     <td class="shoping__cart__name">
                                         <h5>{{ $row->name }}</h5>

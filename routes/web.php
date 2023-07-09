@@ -50,4 +50,12 @@ Route::prefix("web")->group(function () {
         ->middleware("session");
     Route::resource('product', ProductController::class);
 
+    Route::get('adminlogin',[App\Http\Controllers\web\AdminController::class,"index"]);
+    Route::post("adminlogin", [App\Http\Controllers\web\AdminController::class, "adminlogin"]);
+    Route::get("adminregister", [App\Http\Controllers\web\AdminController::class, "add_admin"]);
+    Route::post("adminregister", [App\Http\Controllers\web\AdminController::class, "save"]);
+
+
+
 });
+
