@@ -83,22 +83,22 @@ Add product
                                         <input value="{{ !empty($id) ? $obj->title: old("title")}}" name="title" type="text">
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Price<span>*</span></p>
-                                        <input value="{{!empty($id) ? $obj->price:old("price")}}" name="price" type="text">
-                                        @error("price")
-                                        <p class="alert alert-danger">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
                             </div>
+                            <div class="checkout__input">
+                                <p>Description<span>*</span></p>
+                                <input value="{{!empty($id) ? $obj->description: old("value")}}" name="description" type="text">
+                            </div>
+                            @if(empty($id))
+                            <div class="checkout__input">
+                                <p>Display Image<span>*</span></p>
+                                <input name="featured_image" type="file">
+                            </div>
+                            @endif
                             <div class="row">
-
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Category<span>*</span></p>
-                                        <select>
+                                        <select name="category_id">
                                             <option value="">Select Category</option>
                                                 <ul>
                                                 @foreach($catlist as $row)
@@ -110,17 +110,7 @@ Add product
                                 </div>
 
                             </div>
-                            <div class="checkout__input">
-                                <p>Description<span>*</span></p>
-                                <input value="{{!empty($id) ? $obj->description: old("value")}}" name="description" type="text">
-
-                            </div>
-                            @if(empty($id))
-                            <div class="checkout__input">
-                                <p>Display Image<span>*</span></p>
-                                <input name="featured_image" type="file">
-                            </div>
-                            @endif
+                            <br
                         </div>
                         <br>
                         <div class="col-lg-12 col-md-12">

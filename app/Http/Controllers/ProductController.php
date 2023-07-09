@@ -121,6 +121,7 @@ class ProductController extends Controller
         }
         return view("web.product.add_edit")
             ->with("title", "Edit Product")
+            ->with("catlist",Category::all())
             ->with("id", $id)
             ->with("obj", $obj);
     }
@@ -128,14 +129,11 @@ class ProductController extends Controller
     {
         //
         $request->validate([
-            "name=>required|min:8",
-            "price=>required|integer",
-            "qty=>required|integer",
+            "title=>required|min:8",
             "description=>required|min:10"
         ]);
         $obj = Product::find($id);
         $obj->title = $request->title ?? $obj->title;
-        $obj->price = $request->price ?? $obj->price;
         $obj->description = $request->description ?? $obj->description;
         $obj->save();
         return redirect("web/product");
