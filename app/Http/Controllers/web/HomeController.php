@@ -32,23 +32,5 @@ class HomeController extends Controller
     {
         return view("web.shop")->with("list", Product::all())->with("catlist", Category::all());
     }
-    // function checkout()
-    // {
-
-    //     $cart = CartModel::where('user_id', Auth::id())->get();
-    //     $list = DB::table("cart as p_cart")
-    //         ->join("product as p", "p_cart.product_id", "=", "p.id")
-    //         ->where("p_cart.user_id", session("user_id"))
-    //         ->select("p.*", "p_cart.id as view_id")
-    //         ->get();
-
-    //     $total = 0;
-
-    //     foreach ($list as $product) {
-    //         $total += $product->price;
-    //     }
-
-    //     return view("web.checkout")->with("total", $total)->with("list", $list)->with("cart", $cart);;
-    // }
 }
 

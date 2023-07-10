@@ -151,24 +151,6 @@ class ProductController extends Controller
             return redirect("web/product");
         }
     }
-    // function shop_cart()
-    // {
-    //     //$list = Product::all();
-
-    //     $list = DB::table("cart as c")
-    //         ->join("product as p", "c.product_id", "=", "p.id")
-    //         ->where("c.user_id", session("user_id"))
-    //         ->select("p.*", "p_cart.id as view_id")
-    //         ->get();
-
-    //     $total = 0;
-
-    //     foreach ($list as $product) {
-    //         $total += $product->price;
-    //     }
-
-    //     return view("web.shop_cart")->with("list", $list)->with("total", $total);
-    // }
     function shop_cart(){
         $list=DB::table("carts as cart")
         ->join("products as product","cart.product_id","=","product.id")

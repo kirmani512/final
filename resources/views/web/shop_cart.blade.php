@@ -105,21 +105,11 @@ Shopping cart
         <div class="row">
             <div class="col-lg-12">
                 <div class="shoping__cart__btns">
-                    <a href="{{ URL("web/shop") }}" <input class="btn btn-success" type="submit" />CONTINUE SHOPPING</a>
-                    <!-- <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                        Upadate Cart</a> -->
+                    <a href="{{ URL("web/shop") }}" <input class="btn btn-success" type="submit">CONTINUE SHOPPING</a>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="shoping__continue">
-                    <!-- <div class="shoping__discount">
-                        <h5>Discount Codes</h5>
-                        <form action="#">
-                            <input type="text" placeholder="Enter your coupon code">
-                            <button type="submit" class="site-btn">APPLY COUPON</button>
-                        </form>
-                    </div> -->
-                </div>
+                
             </div>
             <div class="col-lg-6">
                 <div class="shoping__checkout">
