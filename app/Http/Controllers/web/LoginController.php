@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderShipped;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Exception;
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -72,6 +74,8 @@ class LoginController extends Controller
         $user->email = $req->email;
         $user->password = Hash::make($req->password);
         $user->save();
+
+        Mail::to($req->user())->send(new OrderShipped($user));
         return redirect("web");
     }
     function logout(Request $req)
