@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Exception;
 
 class LoginController extends Controller
 {
@@ -14,10 +15,23 @@ class LoginController extends Controller
         $pass = "raza";
         return view("web.login");
     }
-    public function getuser()
+    public function getuser($id)
     {
-        User::select("*")->today()->get();
-        User::select("*")->status(1)->get();
+        try {
+            User::select("*")->today()->get();
+            User::select("*")->status(1)->get();
+        } catch (exception $e) {
+
+            $message = $e->getMessage();
+            var_dump('exception message:  ' . $message);
+
+            $code = $e->getcode();
+            var_dump('Exception code: ' . $code);
+
+            $string = $e->__toString();
+            var_dump('Exception string: ' . $string);
+            exit;
+        }
     }
     function login(Request $req)
     {

@@ -31,7 +31,7 @@ class User extends Authenticatable
      */
     public function scopeToday($query)
     {
-        return  $query->whereDate('created_at' . Carbon::today());
+        return  $query->whereDate('created_at' , Carbon::today());
     }
     public function userStatus($query, $type)
     {
