@@ -14,7 +14,11 @@ class LoginController extends Controller
         $pass = "raza";
         return view("web.login");
     }
-
+    public function getuser()
+    {
+        User::select("*")->today()->get();
+        User::select("*")->status(1)->get();
+    }
     function login(Request $req)
     {
         $req->validate([

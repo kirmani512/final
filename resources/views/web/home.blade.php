@@ -42,7 +42,7 @@ Home
                     <div class="hero__text">
                         <h2>Gadgets<br>At your Doorstep</h2>
                         <p>Free Delivery All over the Pakistan</p>
-                        <a href="{{URL("shop")}}" class="primary-btn">SHOP NOW</a>
+                        <a href="{{URL("web/shop")}}" class="primary-btn">SHOP NOW</a>
                     </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@ Home
                     </div>
                     <br>
                     <div class="featured__item__text">
-                        <td>{{$row->name}}</td>
+                        <td>{{$row->title}}</td>
                         <br>
                         <td>
                             <h5>Rs&nbsp;{{ $row->price }}</h5>

@@ -35,7 +35,7 @@
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="{{URL("web/category")}}">Categories</a></li>
-                        <li><a href="{{URL("web/shop_cart")}}"">Shoping Cart</a></li>
+                        <li><a href="{{URL("web/shop_cart")}}">Shoping Cart</a></li>
                         <li><a href=" {{URL("web/checkout")}}">Check Out</a></li>
                         <li><a href="{{URL("web/blog_details")}}">Blog Details</a></li>
                         <li><a href="{{URL("web/blog")}}">Blog</a></li>
@@ -116,8 +116,6 @@
                             <ul class="header__menu__dropdown">
                                 <li><a href="{{URL("web/category")}}">Categories</a></li>
                                 <li><a href="{{URL("web/shop_cart")}}">Shoping Cart</a></li>
-                                <li><a href=" {{URL("web/checkout")}}">Check Out</a></li>
-                                <li><a href="{{URL("web/orders")}}">Orders List</a></li>
                                 <li><a href="{{URL("web/contact")}}">Contact</a></li>
 
                             </ul>
@@ -128,7 +126,6 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="{{ URL('web/fav_list') }}"><i class="fa fa-heart"></i></a></li>
                         <li><a href="{{ URL('web/shop_cart') }}"><i class="fa fa-shopping-bag"></i></a></li>
                     </ul>
                 </div>

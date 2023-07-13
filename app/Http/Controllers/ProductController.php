@@ -77,7 +77,7 @@ class ProductController extends Controller
     // }
     public function index(Request $request)
     {
-        $listing = Product::all();
+        $listing = Product::paginate(5);
         return view("web.product.listing")->with("list", $listing);
     }
 
@@ -98,33 +98,35 @@ class ProductController extends Controller
         $product = new Product();
         if ($request->has("featured_image")) {
             $path = $request->featured_image->store("upload");
-            $product->featured_image = $path;
+            $path = $product->featured_image;
         }
         $product->title = $request->title;
-        $product->price=$request->price;
+        $product->price = $request->price;
         $product->description = $request->description;
         $product->category_id = $request->category_id;
         $product->save();
         return redirect("web/product");
     }
-    public function show($id){
-        $obj=null;
-        if(!empty($id)){
-            $obj=Product::find($id);
+    public function show($id)
+    {
+        $obj = null;
+        if (!empty($id)) {
+            $obj = Product::find($id);
         }
         return view("web.product.preview")
-        ->with("title","Delete Product")
-        ->with("id",$id)
-        ->with("obj",$obj);
+            ->with("title", "Delete Product")
+            ->with("id", $id)
+            ->with("obj", $obj);
     }
-    public function edit($id){
+    public function edit($id)
+    {
         $obj = null;
         if (!empty($id)) {
             $obj = product::find($id);
         }
         return view("web.product.add_edit")
             ->with("title", "Edit Product")
-            ->with("catlist",Category::all())
+            ->with("catlist", Category::all())
             ->with("id", $id)
             ->with("obj", $obj);
     }
@@ -151,19 +153,20 @@ class ProductController extends Controller
             return redirect("web/product");
         }
     }
-    function shop_cart(){
-        $list=DB::table("carts as cart")
-        ->join("products as product","cart.product_id","=","product.id")
-        ->where("cart.user_id", session("user_id"))
-        ->select("product.*","cart.id as cart_id")
-        ->get();
+    function shop_cart()
+    {
+        $list = DB::table("carts as cart")
+            ->join("products as product", "cart.product_id", "=", "product.id")
+            ->where("cart.user_id", session("user_id"))
+            ->select("product.*", "cart.id as cart_id")
+            ->get();
 
-        $total=0;
+        $total = 0;
 
-        foreach($list as $product){
-            $total+=$product->price;
+        foreach ($list as $product) {
+            $total += $product->price;
         }
-        return view("web.shop_cart")->with("list",$list)->with("total",$total);
+        return view("web.shop_cart")->with("list", $list)->with("total", $total);
     }
     function add_cart($id)
     {

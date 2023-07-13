@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    public function scopeToday($query)
+    {
+        return  $query->whereDate('created_at' . Carbon::today());
+    }
+    public function userStatus($query, $type)
+    {
+        return $query->where('status', $type);
+    }
     protected $hidden = [
         'password',
         'remember_token',

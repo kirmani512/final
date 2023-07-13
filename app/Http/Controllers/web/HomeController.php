@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $search = $request['search'] ?? "";
         if ($search != "") {
-            $product = Product::where('name', 'LIKE', "%$search%")->get();
+            $product = Product::where('title', 'LIKE', "%$search%")->get();
             return view("web.home")->with("list", $product);
         } else {
             return view("web.home")->with("list", Product::all())->with("catlist", Category::all());
